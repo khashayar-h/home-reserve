@@ -1,6 +1,7 @@
 var router = require('express').Router();
 const User = require('../models/user.js');
 const jwt = require('jsonwebtoken');
+const config = require('config');
 
 router.get('/', (req, res) => {
     res.render('pages/index', {error: ""});
@@ -26,10 +27,10 @@ router.route("/").post(async (req, res) => {
 		}
 
 		// User found, return the token to the client side
-		const token = jwt.sign(
-			JSON.stringify(user),
-			"1234"
-		);
+		const token = user.generateAuthToken();
+
+		const isAdmin = user.isAdmin;
+
 
         const userId = user._id;
         console.log(userId);
@@ -37,7 +38,7 @@ router.route("/").post(async (req, res) => {
 		res.cookie('auth', token);
 
 
-		return res.render('pages/dashboard');
+		return res.render('pages/dashboard',{isAdmin : isAdmin});
 
 	} catch (err) {
 		console.log(err);

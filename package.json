@@ -9,6 +9,7 @@
   "author": "Khashayar Haghighi",
   "license": "ISC",
   "dependencies": {
+    "config": "^3.3.8",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "ejs": "^3.1.8",

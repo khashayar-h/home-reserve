@@ -3,6 +3,8 @@ const app = express();
 var cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const loginRouter = require('./routes/login.js');
+const logoutRouter = require('./routes/logout.js');
+
 
 app.set('view engine', 'ejs');
 
@@ -11,6 +13,7 @@ app.use(express.urlencoded());
 app.use(express.json());
 
 app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 
 let uri = "mongodb://localhost:27017/HomeReservation";
 
