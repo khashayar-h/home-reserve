@@ -11,11 +11,12 @@ app.set('view engine', 'ejs');
 app.use(cookieParser());
 app.use(express.urlencoded());
 app.use(express.json());
+app.use(express.static(__dirname + '/views/dashboard'));
 
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 
-let uri = "mongodb://localhost:27017/HomeReservation";
+let uri = "mongodb+srv://xerxes2000a:WH8pA6It7wFrhRzV@cluster0.54ypm4g.mongodb.net/?retryWrites=true&w=majority";
 
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false }, (err) => {
     if (!err) {

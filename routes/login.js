@@ -23,7 +23,7 @@ router.route("/").post(async (req, res) => {
 		//console.log(user);
 
 		if (user === null) {
-			return res.render('pages/index', {error: "Wrong Username/Password"});
+			return res.render('pages/index', {error: "نام کاربری یا رمز عبور اشتباه است"});
 		}
 
 		// User found, return the token to the client side
@@ -38,7 +38,7 @@ router.route("/").post(async (req, res) => {
 		res.cookie('auth', token);
 
 
-		return res.render('pages/dashboard',{isAdmin : isAdmin});
+		return res.render('dashboard/starter',{isAdmin : isAdmin});
 
 	} catch (err) {
 		console.log(err);
