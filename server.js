@@ -4,6 +4,8 @@ var cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const loginRouter = require('./routes/login.js');
 const logoutRouter = require('./routes/logout.js');
+const citiesRouter = require('./routes/cities.js');
+
 
 
 app.set('view engine', 'ejs');
@@ -15,6 +17,7 @@ app.use(express.static(__dirname + '/views/dashboard'));
 
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
+app.use('/cities', citiesRouter);
 
 let uri = "mongodb+srv://xerxes2000a:WH8pA6It7wFrhRzV@cluster0.54ypm4g.mongodb.net/?retryWrites=true&w=majority";
 

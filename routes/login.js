@@ -20,8 +20,6 @@ router.route("/").post(async (req, res) => {
 			password: plainTextPassword,
 		});
 
-		//console.log(user);
-
 		if (user === null) {
 			return res.render('pages/index', {error: "نام کاربری یا رمز عبور اشتباه است"});
 		}
@@ -31,12 +29,14 @@ router.route("/").post(async (req, res) => {
 
 		const isAdmin = user.isAdmin;
 
+		const name = encodeURI(user.name);
 
         const userId = user._id;
-        console.log(userId);
+        console.log(name);
 
 		res.cookie('auth', token);
 
+		res.cookie('name', name);
 
 		return res.render('dashboard/starter',{isAdmin : isAdmin});
 

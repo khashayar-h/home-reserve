@@ -1,0 +1,30 @@
+<div class="table-responsive">
+    <table class="table m-0">
+        <thead>
+            <tr>
+                <th scope="col">ردیف</th>
+                <th scope="col">نام</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% cities.forEach(function(city) { %>
+                <tr  id="<%= city._id %>">
+                    <th scope="row"><%= cities.indexOf(city) + 1 %></th>
+                    <td><%= city.name %></td>
+                    <td>
+                        <!-- Call to action buttons -->
+                        <ul class="list-inline m-0">
+                            <li class="list-inline-item">
+                                <form action="<%= '/cities/delete/' + city._id %>" method="DELETE">
+                                    <button id="<%= 'btnDelete' + cities.indexOf(city) %>" class="btn btn-danger btn-sm rounded-0 to-delete" type="submit" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                                </form>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                
+              <% }); %>
+        </tbody>
+    </table>
+
+</div>
