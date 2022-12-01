@@ -15,13 +15,36 @@
                         <!-- Call to action buttons -->
                         <ul class="list-inline m-0">
                             <li class="list-inline-item">
-                                <form action="<%= '/cities/delete/' + city._id %>" method="DELETE">
-                                    <button id="<%= 'btnDelete' + cities.indexOf(city) %>" class="btn btn-danger btn-sm rounded-0 to-delete" type="submit" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-                                </form>
+
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="<%= '#exampleModal' + city._id %>">
+                                    <i class="fa fa-trash"></i>
+                                  </button>
                             </li>
                         </ul>
                     </td>
                 </tr>
+
+                <!-- Modal -->
+                <div class="modal fade" id="<%= 'exampleModal' + city._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">حذف</h1>
+                        </div>
+                        <div class="modal-body">
+                        آیا از حذف شهر مطمئن هستید؟
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
+
+                        <form action="<%= '/cities/delete/' + city._id %>" method="DELETE">
+                            <button id="<%= 'btnDelete' + cities.indexOf(city) %>" class="btn btn-danger" type="submit" data-toggle="tooltip" data-placement="top" title="Delete">بله</button>
+                        </form>
+
+                        </div>
+                    </div>
+                    </div>
+                </div>
                 
               <% }); %>
         </tbody>
