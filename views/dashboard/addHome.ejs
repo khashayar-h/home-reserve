@@ -51,24 +51,48 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="card-body">
           <% if (added) { %>
             <div class="alert alert-success" role="alert">
-              شهر با موفقیت افزوده شد
+              ویلا با موفقیت افزوده شد
             </div>
           <% } %>
           <div class="card-body">
             <% if (deleted) { %>
               <div class="alert alert-danger" role="alert">
-                شهر با موفقیت حذف شد
+                ویلا با موفقیت حذف شد
               </div>
             <% } %>
-          <h5 class="card-title mb-2 text-bold">افزودن شهر</h5>
-          <form action="/cities/add" method="post">
-            <div class="input-group flex-nowrap">
-              <input type="text" name="name" class="form-control ml-3" placeholder="نام شهر را وارد کنید" aria-label="Username" aria-describedby="addon-wrapping">
-              <input value="افزودن" type="submit" class="btn btn-primary">
+          <h5 class="card-title mb-2 text-bold">افزودن سوئیت / ویلا</h5>
+          <form action="/home/add" method="post">
+            <div class="input-group">
+              <div class="col-md-6 my-2">
+                <input type="text" name="name" id="" class="form-control" placeholder="نام ویلا را وارد کنید">
+              </div>
+              <div class="col-md-6 my-2">
+                <input type="text" name="size" id="" class="form-control" placeholder="سایز ویلا را وارد کنید">
+              </div>
+              <div class="col-md-6 my-2">
+                <input type="number" name="qty" id="" class="form-control" placeholder="تعداد ویلا را مشخص کنید">
+              </div>
+              <div class="col-md-6 my-2">
+                <select class="form-select" name="type" aria-label="Default select example">
+                    <option selected>نوع ویلا را انتخاب کنید</option>
+                    <option value="ویلا">ویلا</option>
+                    <option value="سوئیت">سوئیت</option>
+                    <option value="آپارتمان">آپارتمان</option>
+                  </select>
+              </div>
+              <div class="col-md-6 my-2">
+                <select class="form-select" name="location" aria-label="Default select example" id="locationSelect">
+                    <option selected>مکان ویلا را انتخاب کنید</option>
+
+                  </select>
+              </div>
+              <div class="d-flex my-2">
+                <input value="افزودن" type="submit" class="btn btn-primary">
+              </div>
             </div> 
           </form>
-          <% if(cities.length > 0){ %>
-            <%- include('../partials/table'); %>
+          <% if(homes.length > 0){ %>
+            <%- include('../partials/homeTable'); %>
           <% } %>
         </div>
       </div>
@@ -105,6 +129,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
   $(".alert").delay(4000).slideUp(200, function() {
       $(this).alert('close');
   });
+
+  $.post("/cities/get",
+  {},
+  function(data, status){
+    console.log(data);
+    if(status == "success"){
+      for (let i = 0; i < data.length; i++) {
+        $('#locationSelect').append(
+          `<option value="${data[i].name}">${data[i].name}</option>`);     
+    }
+  }
+});
+
+
 </script>
 </body>
 </html>

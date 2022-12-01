@@ -14,10 +14,14 @@ router.post('/add', [auth, admin], async (req, res) => {
 
 router.post('/', [auth, admin] , async (req, res) => {
 
-    const cookies = req.cookies;
-    console.log(cookies.auth);
     let cities = await fetchCities();
     return res.render('dashboard/addCity', {isAdmin: req.user.isAdmin, added: "", deleted: "", cities: cities});
+})
+
+router.post('/get', [auth, admin] , async (req, res) => {
+
+    let cities = await fetchCities();
+    return res.json(cities).status(200);
 })
 
 router.get('/delete/:id', [auth, admin] , async (req, res) => {

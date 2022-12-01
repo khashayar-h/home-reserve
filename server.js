@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const loginRouter = require('./routes/login.js');
 const logoutRouter = require('./routes/logout.js');
 const citiesRouter = require('./routes/cities.js');
+const homeRouter = require('./routes/home.js');
+
 
 
 
@@ -18,6 +20,8 @@ app.use(express.static(__dirname + '/views/dashboard'));
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/cities', citiesRouter);
+app.use('/home', homeRouter);
+
 
 let uri = "mongodb+srv://xerxes2000a:WH8pA6It7wFrhRzV@cluster0.54ypm4g.mongodb.net/?retryWrites=true&w=majority";
 

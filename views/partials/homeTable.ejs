@@ -1,0 +1,61 @@
+<div class="table-responsive">
+    <table class="table m-0">
+        <thead>
+            <tr>
+                <th scope="col">ردیف</th>
+                <th scope="col">نام</th>
+                <th scope="col">مکان</th>
+                <th scope="col">تعداد</th>
+                <th scope="col">نوع</th>
+                <th scope="col">سایز</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% homes.forEach(function(home) { %>
+                <tr  id="<%= home._id %>">
+                    <th scope="row"><%= homes.indexOf(home) + 1 %></th>
+                    <td><%= home.name %></td>
+                    <td><%= home.location %></td>
+                    <td><%= home.qty %></td>
+                    <td><%= home.type %></td>
+                    <td><%= home.size %></td>
+                    <td>
+                        <!-- Call to action buttons -->
+                        <ul class="list-inline m-0">
+                            <li class="list-inline-item">
+
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="<%= '#exampleModal' + home._id %>">
+                                    <i class="fa fa-trash"></i>
+                                  </button>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <!-- Modal -->
+                <div class="modal fade" id="<%= 'exampleModal' + home._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">حذف</h1>
+                        </div>
+                        <div class="modal-body">
+                        آیا از حذف ویلا مطمئن هستید؟
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
+
+                        <form action="<%= '/home/delete/' + home._id %>" method="DELETE">
+                            <button id="<%= 'btnDelete' + homes.indexOf(home) %>" class="btn btn-danger" type="submit" data-toggle="tooltip" data-placement="top" title="Delete">بله</button>
+                        </form>
+
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                
+              <% }); %>
+        </tbody>
+    </table>
+
+</div>

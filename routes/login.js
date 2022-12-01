@@ -7,7 +7,8 @@ router.get('/', (req, res) => {
     res.render('pages/index', {error: ""});
 })
 
-router.route("/").post(async (req, res) => {
+router.route("/dashboard").post(async (req, res) => {	
+
 	try {
 
 		const username = req.body.username;
