@@ -2,12 +2,19 @@ var router = require('express').Router();
 const User = require('../models/user.js');
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const auth = require('../middleware/auth');
 
 router.get('/', (req, res) => {
     res.render('pages/index', {error: ""});
 })
 
+router.get("/dashboard", [auth], async (req, res)=> {
+	console.log(req.cookies.auth);
+	return res.render('dashboard/starter',{isAdmin : req.user.isAdmin});
+})
+
 router.route("/dashboard").post(async (req, res) => {	
+
 
 	try {
 
