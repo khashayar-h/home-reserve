@@ -7,7 +7,11 @@ const homeSchema = new Schema({
         type: String,
         required: true
     },
-    location: {
+    locationId: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Cities',
+        required : true
+    },
+    locationName:{
         type: String
     },
     type: {

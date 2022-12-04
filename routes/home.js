@@ -2,11 +2,22 @@ var router = require('express').Router();
 const admin = require('../middleware/admin');
 const auth = require('../middleware/auth');
 const Home = require('../models/home');
+const Cities = require('../models/cities');
 
 router.post('/add', [auth, admin], async (req, res) => {
 
+    const locationName = await Cities.findById(req.body.locationId, function (err, docs) {
+        if (err){
+            console.log(err);
+        }
+        else{
+            console.log(docs.name);
+        }
+    });
+
     let home = new Home({name: req.body.name,
-                        location: req.body.location,
+                        locationId: req.body.locationId,
+                        locationName: locationName.name,
                         type: req.body.type,
                         qty: req.body.qty,
                         size: req.body.size});

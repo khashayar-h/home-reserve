@@ -33,7 +33,6 @@ router.route("/dashboard").post(async (req, res) => {
 		const name = encodeURI(user.name);
 
         const userId = user._id;
-        console.log(name);
 
 		res.cookie('auth', token);
 

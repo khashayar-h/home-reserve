@@ -81,7 +81,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </select>
               </div>
               <div class="col-md-6 my-2">
-                <select class="form-select" name="location" aria-label="Default select example" id="locationSelect">
+                <select class="form-select" name="locationId" aria-label="Default select example" id="locationSelect">
                     <option selected>مکان ویلا را انتخاب کنید</option>
 
                   </select>
@@ -137,7 +137,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     if(status == "success"){
       for (let i = 0; i < data.length; i++) {
         $('#locationSelect').append(
-          `<option value="${data[i].name}">${data[i].name}</option>`);     
+          `<option value="${data[i]._id}">${data[i].name}</option>`);     
     }
   }
 });
