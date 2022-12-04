@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="stylesheet" href="/DatePicker/persian-date.min.css"/>
+  <title>پنل مدیریت</title>
+
+  <%- include('../partials/head'); %>
+
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
+<%- include('../partials/navbar'); %>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <%- include('../partials/sidebar'); %>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">صفحه سریع</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-left">
+              <li class="breadcrumb-item"><a href="#">خانه</a></li>
+              <li class="breadcrumb-item active">صفحه سریع</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="card col-12">
+        <div class="card-body">
+          <% if (added) { %>
+            <div class="alert alert-success" role="alert">
+              بازه زمانی با موفقیت افزوده شد
+            </div>
+          <% } %>
+          <div class="card-body">
+            <% if (deleted) { %>
+              <div class="alert alert-danger" role="alert">
+                بازه زمانی با موفقیت حذف شد
+              </div>
+            <% } %>
+          <h5 class="card-title mb-2 text-bold">افزودن بازه زمانی</h5>
+          <form action="/period/add" method="post">
+            <div class="input-group">
+              
+              <div class="col-md-6 my-2">
+                <p class="text-dark fs-5">از تاریخ :</p>
+                <input id="fromAlt" class="form-control mb-3">
+                <div class="range-from-example"></div>
+              </div>
+              <div class="col-md-6 my-2">
+                <p class="text-dark fs-5">تا تاریخ :</p>
+                <input id="toAlt" class="form-control mb-3">
+                <div class="range-to-example"></div>
+              </div>
+
+              <div class="col-md-6 my-2">
+                <p class="text-dark fs-5">از ساعت :</p>
+                <input id="fromTimeAlt" class="form-control mb-3">
+                <div class="range-from-time-example"></div>
+              </div>
+              <div class="col-md-6 my-2">
+                <p class="text-dark fs-5">تا ساعت :</p>
+                <input id="toTimeAlt" class="form-control mb-3">
+                <div class="range-to-time-example"></div>
+              </div>
+
+
+              <div class="d-flex my-2">
+                <input value="افزودن" type="submit" class="btn btn-primary">
+              </div>
+              
+            </div> 
+          </form>
+          <% if(periods.length > 0){ %>
+            <%- include('../partials/homeTable'); %>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+    <div class="p-3">
+      <h5>Title</h5>
+      <p>Sidebar content</p>
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+<%- include('../partials/footer'); %>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+
+<%- include('../partials/scripts'); %>
+
+<script src="/DatePicker/persian-date.js"></script>
+<script src="/DatePicker/persian-datepicker.js"></script>
+
+<!-- to delete alert after 4s -->
+
+<script>
+  $(".alert").delay(4000).slideUp(200, function() {
+      $(this).alert('close');
+  });
+
+</script>
+
+<!-- DatePicker -->
+
+<script type="text/javascript">
+  $(document).ready(function() {
+        var to, from;
+    to = $(".range-to-example").persianDatepicker({
+        "inline": true,
+        "format": "L",
+        "viewMode": "day",
+        "initialValue": true,
+        "autoClose": false,
+        "position": "auto",
+        "altFormat": "l",
+        "altField": "#toAlt",
+        "onlyTimePicker": false,
+        "onlySelectOnDate": false,
+        "calendarType": "persian",
+        "inputDelay": 800,
+        "observer": false,
+        "calendar": {
+          "persian": {
+            "locale": "fa",
+            "showHint": true,
+            "leapYearMode": "algorithmic"
+          },
+          "gregorian": {
+            "locale": "en",
+            "showHint": true
+          }
+        },
+        "navigator": {
+          "enabled": true,
+          "scroll": {
+            "enabled": false
+          },
+          "text": {
+            "btnNextText": "<",
+            "btnPrevText": ">"
+          }
+        },
+        "toolbox": {
+          "enabled": true,
+          "calendarSwitch": {
+            "enabled": true,
+            "format": "MMMM"
+          },
+          "todayButton": {
+            "enabled": true,
+            "text": {
+              "fa": "امروز",
+              "en": "Today"
+            }
+          },
+          "submitButton": {
+            "enabled": true,
+            "text": {
+              "fa": "تایید",
+              "en": "Submit"
+            }
+          },
+          "text": {
+            "btnToday": "امروز"
+          }
+        },
+        "timePicker": {
+          "enabled": false,
+          "step": 1,
+          "hour": {
+            "enabled": true,
+            "step": null
+          },
+          "minute": {
+            "enabled": true,
+            "step": null
+          },
+          "second": {
+            "enabled": true,
+            "step": null
+          },
+          "meridian": {
+            "enabled": false
+          }
+        },
+        "dayPicker": {
+          "enabled": true,
+          "titleFormat": "YYYY MMMM"
+        },
+        "monthPicker": {
+          "enabled": true,
+          "titleFormat": "YYYY"
+        },
+        "yearPicker": {
+          "enabled": true,
+          "titleFormat": "YYYY"
+        },
+        "responsive": false,
+        onSelect: function (unix) {
+            to.touched = true;
+            if (from && from.options && from.options.maxDate != unix) {
+                var cachedValue = from.getState().selected.unixDate;
+                from.options = {maxDate: unix};
+                if (from.touched) {
+                    from.setDate(cachedValue);
+                    console.log(new persianDate(unix).hour());
+
+                }
+            }
+        }
+    });
+    from = $(".range-from-example").persianDatepicker({
+      "inline": true,
+        "format": "L",
+        "viewMode": "day",
+        "initialValue": true,
+        "autoClose": false,
+        "position": "auto",
+        "altFormat": "l",
+        "altField": "#fromAlt",
+        "onlyTimePicker": false,
+        "onlySelectOnDate": false,
+        "calendarType": "persian",
+        "inputDelay": 800,
+        "observer": false,
+        "calendar": {
+          "persian": {
+            "locale": "fa",
+            "showHint": true,
+            "leapYearMode": "algorithmic"
+          },
+          "gregorian": {
+            "locale": "en",
+            "showHint": true
+          }
+        },
+        "navigator": {
+          "enabled": true,
+          "scroll": {
+            "enabled": false
+          },
+          "text": {
+            "btnNextText": "<",
+            "btnPrevText": ">"
+          }
+        },
+        "toolbox": {
+          "enabled": true,
+          "calendarSwitch": {
+            "enabled": true,
+            "format": "MMMM"
+          },
+          "todayButton": {
+            "enabled": true,
+            "text": {
+              "fa": "امروز",
+              "en": "Today"
+            }
+          },
+          "submitButton": {
+            "enabled": true,
+            "text": {
+              "fa": "تایید",
+              "en": "Submit"
+            }
+          },
+          "text": {
+            "btnToday": "امروز"
+          }
+        },
+        "timePicker": {
+          "enabled": false,
+          "step": 1,
+          "hour": {
+            "enabled": true,
+            "step": null
+          },
+          "minute": {
+            "enabled": true,
+            "step": null
+          },
+          "second": {
+            "enabled": true,
+            "step": null
+          },
+          "meridian": {
+            "enabled": false
+          }
+        },
+        "dayPicker": {
+          "enabled": true,
+          "titleFormat": "YYYY MMMM"
+        },
+        "monthPicker": {
+          "enabled": true,
+          "titleFormat": "YYYY"
+        },
+        "yearPicker": {
+          "enabled": true,
+          "titleFormat": "YYYY"
+        },
+        "responsive": false,
+        onSelect: function (unix) {
+            from.touched = true;
+            if (to && to.options && to.options.minDate != unix) {
+                var cachedValue = to.getState().selected.unixDate;
+                to.options = {minDate: unix};
+                if (to.touched) {
+                    to.setDate(cachedValue);
+                }
+            }
+        }
+    });  
+  });
+</script>
+
+<!-- TimePicker -->
+
+<script type="text/javascript">
+  $(document).ready(function() {
+        var to, from;
+    to = $(".range-to-time-example").persianDatepicker({
+        "inline": true,
+        "format": "H:m:s",
+        "viewMode": "day",
+        "initialValue": true,
+        "autoClose": false,
+        "position": "auto",
+        "altFormat": "H:m:s",
+        "altField": "#toTimeAlt",
+        "onlyTimePicker": false,
+        "onlySelectOnDate": false,
+        "calendarType": "persian",
+        "inputDelay": 800,
+        "observer": false,
+        "calendar": {
+          "persian": {
+            "locale": "fa",
+            "showHint": true,
+            "leapYearMode": "algorithmic"
+          },
+          "gregorian": {
+            "locale": "en",
+            "showHint": true
+          }
+        },
+        "navigator": {
+          "enabled": false,
+          "scroll": {
+            "enabled": false
+          },
+          "text": {
+            "btnNextText": "<",
+            "btnPrevText": ">"
+          }
+        },
+        "toolbox": {
+          "enabled": false,
+          "calendarSwitch": {
+            "enabled": true,
+            "format": "MMMM"
+          },
+          "todayButton": {
+            "enabled": true,
+            "text": {
+              "fa": "امروز",
+              "en": "Today"
+            }
+          },
+          "submitButton": {
+            "enabled": true,
+            "text": {
+              "fa": "تایید",
+              "en": "Submit"
+            }
+          },
+          "text": {
+            "btnToday": "امروز"
+          }
+        },
+        "timePicker": {
+          "enabled": true,
+          "step": 1,
+          "hour": {
+            "enabled": true,
+            "step": null
+          },
+          "minute": {
+            "enabled": true,
+            "step": null
+          },
+          "second": {
+            "enabled": true,
+            "step": null
+          },
+          "meridian": {
+            "enabled": false
+          }
+        },
+        "dayPicker": {
+          "enabled": false,
+          "titleFormat": "YYYY MMMM"
+        },
+        "monthPicker": {
+          "enabled": false,
+          "titleFormat": "YYYY"
+        },
+        "yearPicker": {
+          "enabled": false,
+          "titleFormat": "YYYY"
+        },
+        "responsive": false,
+        onSelect: function (unix) {
+            to.touched = true;
+            if (from && from.options && from.options.maxDate != unix) {
+                var cachedValue = from.getState().selected.unixDate;
+                from.options = {maxDate: unix};
+                if (from.touched) {
+                    from.setDate(cachedValue);
+                    console.log(new persianDate(unix).hour());
+
+                }
+            }
+        }
+    });
+    from = $(".range-from-time-example").persianDatepicker({
+      "inline": true,
+        "format": "H:m:s",
+        "viewMode": "day",
+        "initialValue": true,
+        "autoClose": false,
+        "position": "auto",
+        "altFormat": "H:m:s",
+        "altField": "#fromTimeAlt",
+        "onlyTimePicker": false,
+        "onlySelectOnDate": false,
+        "calendarType": "persian",
+        "inputDelay": 800,
+        "observer": false,
+        "calendar": {
+          "persian": {
+            "locale": "fa",
+            "showHint": true,
+            "leapYearMode": "algorithmic"
+          },
+          "gregorian": {
+            "locale": "en",
+            "showHint": true
+          }
+        },
+        "navigator": {
+          "enabled": false,
+          "scroll": {
+            "enabled": false
+          },
+          "text": {
+            "btnNextText": "<",
+            "btnPrevText": ">"
+          }
+        },
+        "toolbox": {
+          "enabled": false,
+          "calendarSwitch": {
+            "enabled": true,
+            "format": "MMMM"
+          },
+          "todayButton": {
+            "enabled": true,
+            "text": {
+              "fa": "امروز",
+              "en": "Today"
+            }
+          },
+          "submitButton": {
+            "enabled": true,
+            "text": {
+              "fa": "تایید",
+              "en": "Submit"
+            }
+          },
+          "text": {
+            "btnToday": "امروز"
+          }
+        },
+        "timePicker": {
+          "enabled": true,
+          "step": 1,
+          "hour": {
+            "enabled": true,
+            "step": null
+          },
+          "minute": {
+            "enabled": true,
+            "step": null
+          },
+          "second": {
+            "enabled": true,
+            "step": null
+          },
+          "meridian": {
+            "enabled": false
+          }
+        },
+        "dayPicker": {
+          "enabled": false,
+          "titleFormat": "YYYY MMMM"
+        },
+        "monthPicker": {
+          "enabled": false,
+          "titleFormat": "YYYY"
+        },
+        "yearPicker": {
+          "enabled": false,
+          "titleFormat": "YYYY"
+        },
+        "responsive": false,
+        onSelect: function (unix) {
+            from.touched = true;
+            if (to && to.options && to.options.minDate != unix) {
+                var cachedValue = to.getState().selected.unixDate;
+                to.options = {minDate: unix};
+                if (to.touched) {
+                    to.setDate(cachedValue);
+                }
+            }
+        }
+    });  
+  });
+</script>
+
+</body>
+</html>
