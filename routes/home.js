@@ -27,7 +27,7 @@ router.post('/add', [auth, admin], async (req, res) => {
     return res.render('dashboard/addHome', {isAdmin: req.user.isAdmin, added: "true", deleted: "", homes: homes});
 })
 
-router.post('/', [auth, admin] , async (req, res) => {
+router.get('/', [auth, admin] , async (req, res) => {
 
     let homes = await fetchHomes();
     return res.render('dashboard/addHome', {isAdmin: req.user.isAdmin, added: "", deleted: "", homes: homes});

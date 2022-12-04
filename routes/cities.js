@@ -12,7 +12,7 @@ router.post('/add', [auth, admin], async (req, res) => {
     return res.render('dashboard/addCity', {isAdmin: req.user.isAdmin, added: "true", deleted: "", cities: cities});
 })
 
-router.post('/', [auth, admin] , async (req, res) => {
+router.get('/', [auth, admin] , async (req, res) => {
 
     let cities = await fetchCities();
     return res.render('dashboard/addCity', {isAdmin: req.user.isAdmin, added: "", deleted: "", cities: cities});

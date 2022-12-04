@@ -25,25 +25,21 @@
 
             <% if (isAdmin) { %>
             <li class="nav-item">
-              <form action="/cities/" method="POST" id="addCity">
-                <a href="#" class="nav-link sideBtn"  onclick="document.getElementById('addCity').submit()">
+                <a href="/cities" class="nav-link sideBtn">
                     <i class="nav-icon fa fa-earth-asia"></i>
                     <p>
                       افزودن شهر جدید
                     </p>
                   </a>
-              </form>
             </li>
 
             <li class="nav-item">
-              <form action="/home/" method="POST" id="addHome">
-                <a href="#" class="nav-link sideBtn"  onclick="document.getElementById('addHome').submit()">
+                <a href="/home" class="nav-link sideBtn">
                     <i class="nav-icon fa fa-house-chimney"></i>
                     <p>
                       افزودن سوئیت / ویلا
                     </p>
                   </a>
-              </form>
             </li>
 
             <% } %>
