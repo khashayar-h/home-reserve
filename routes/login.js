@@ -9,12 +9,12 @@ router.get('/', (req, res) => {
 })
 
 router.get("/dashboard", [auth], async (req, res)=> {
+
 	console.log(req.cookies.auth);
 	return res.render('dashboard/starter',{isAdmin : req.user.isAdmin});
 })
 
 router.route("/dashboard").post(async (req, res) => {	
-
 
 	try {
 

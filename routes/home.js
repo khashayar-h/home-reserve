@@ -35,7 +35,7 @@ router.get('/', [auth, admin] , async (req, res) => {
 
 router.get('/delete/:id', [auth, admin] , async (req, res) => {
     const home = await Home.findByIdAndDelete(req.params.id);
-    if(!home) return res.status(404).send('The home with the given ID was not found.');
+    if(!home) return res.status(404).render('pages/404');
     console.log('home deleted');
     let homes = await fetchHomes();
     return res.render('dashboard/addHome', {isAdmin: req.user.isAdmin, added: "", deleted: "true", homes: homes});

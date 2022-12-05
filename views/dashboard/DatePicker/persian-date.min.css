@@ -9,7 +9,9 @@
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
-    -o-user-select: none; }
+    -o-user-select: none; 
+    border-radius: 10px!important;  
+  }
   
   .datepicker-plot-area .datepicker-time-view .down-btn,
   .datepicker-plot-area .datepicker-time-view .up-btn {
@@ -85,7 +87,8 @@
     background-color: #005299;
     color: #fff;
     border: none;
-    text-shadow: 1px 1px 1px #000; }
+    text-shadow: 1px 1px 1px #000; 
+    border-radius: 10px;}
   
   .datepicker-plot-area .datepicker-day-view .table-days td.selected span .datepicker-plot-area .datepicker-day-view .table-days td:hover, .datepicker-plot-area .datepicker-day-view .table-days td span:hover, .datepicker-plot-area .datepicker-year-view .year-item:hover,
   .datepicker-plot-area .datepicker-month-view .month-item:hover {
@@ -144,9 +147,7 @@
     display: block;
     float: left;
     width: 100%;
-    padding: 5px;
-    background: #f9f9f9;
-    border-top: 1px solid #f1f1f1; }
+    padding: 5px; }
     .datepicker-plot-area .datepicker-time-view > .time-segment {
       display: block;
       width: 22%;

@@ -32,7 +32,7 @@ router.post('/add', [auth, admin], async (req, res) => {
 
 router.get('/delete/:id', [auth, admin] , async (req, res) => {
     const period = await Period.findByIdAndDelete(req.params.id);
-    if(!period) return res.status(404).send('The period with the given ID was not found.');
+    if(!period) return res.status(404).render('pages/404');
     console.log('period deleted');
     let periods = await fetchPeriods();
     return res.render('dashboard/addPeriod', {isAdmin: req.user.isAdmin, added: "", deleted: "true", periods: periods});
@@ -44,7 +44,7 @@ router.get('/active/:id', [auth, admin] , async (req, res) => {
     const deactivated = await Period.updateMany({isActive : true}, {$set: {isActive: false}});
     if(deactivated){
         const period = await Period.findByIdAndUpdate(req.params.id, {isActive: true});
-        if(!period) return res.status(404).send('The period with the given ID was not found.');
+        if(!period) return res.status(404).render('pages/404');
         console.log('period activated');
         let periods = await fetchPeriods();
         return res.render('dashboard/activePeriod', {isAdmin: req.user.isAdmin, added: "true", deleted: "", periods: periods});

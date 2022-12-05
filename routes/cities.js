@@ -26,7 +26,7 @@ router.post('/get', [auth, admin] , async (req, res) => {
 
 router.get('/delete/:id', [auth, admin] , async (req, res) => {
     const city = await City.deleteOne({_id : req.params.id});
-    if(!city) return res.status(404).send('The city with the given ID was not found.');
+    if(!city) return res.status(404).render('pages/404');
     console.log('city deleted');
     let cities = await fetchCities();
     return res.render('dashboard/addCity', {isAdmin: req.user.isAdmin, added: "", deleted: "true", cities: cities});
