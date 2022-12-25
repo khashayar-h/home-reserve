@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 router.get("/dashboard", [auth], async (req, res)=> {
 
 	console.log(req.cookies.auth);
-	return res.render('dashboard/starter',{isAdmin : req.user.isAdmin});
+	return res.render('dashboard/starter',{isAdmin : req.user.isAdmin, error : false});
 })
 
 router.route("/dashboard").post(async (req, res) => {	
@@ -45,7 +45,7 @@ router.route("/dashboard").post(async (req, res) => {
 
 		res.cookie('name', name);
 
-		return res.render('dashboard/starter',{isAdmin : isAdmin});
+		return res.render('dashboard/starter',{isAdmin : isAdmin, error : false});
 
 	} catch (err) {
 		console.log(err);

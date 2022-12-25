@@ -121,11 +121,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Footer -->
 <%- include('../partials/footer'); %>
 </div>
-<!-- ./wrapper -->
+<!-- notPermittedModal -->
+
+<div class="modal fade" tabindex="-1" id="notPermitted">
+  <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">عملیات غیرمجاز</h5>
+          </div>
+          <div class="modal-body">
+            <p><%= error %></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">بستن</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
 
 <!-- REQUIRED SCRIPTS -->
 
 <%- include('../partials/scripts'); %>
+<% if(error != false) { %>
+<script>
+  $( document ).ready(function() {
+      $("#notPermitted").modal('toggle');
+  })
+</script>
+<% } %>
 
 </body>
 </html>
