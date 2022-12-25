@@ -7,6 +7,7 @@ const logoutRouter = require('./routes/logout.js');
 const citiesRouter = require('./routes/cities.js');
 const homeRouter = require('./routes/home.js');
 const periodRouter = require('./routes/period.js');
+const reservationRouter = require('./routes/reservation.js');
 
 app.set('view engine', 'ejs');
 
@@ -20,6 +21,7 @@ app.use('/logout', logoutRouter);
 app.use('/cities', citiesRouter);
 app.use('/home', homeRouter);
 app.use('/period', periodRouter);
+app.use('/reservation', reservationRouter);
 
 
 let uri = "mongodb+srv://xerxes2000a:WH8pA6It7wFrhRzV@cluster0.54ypm4g.mongodb.net/?retryWrites=true&w=majority";

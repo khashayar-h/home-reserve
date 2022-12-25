@@ -3,6 +3,7 @@ const admin = require('../middleware/admin');
 const auth = require('../middleware/auth');
 const Home = require('../models/home');
 const Cities = require('../models/cities');
+const mongoose = require('mongoose');
 
 router.post('/add', [auth, admin], async (req, res) => {
 
@@ -31,6 +32,12 @@ router.get('/', [auth, admin] , async (req, res) => {
 
     let homes = await fetchHomes();
     return res.render('dashboard/addHome', {isAdmin: req.user.isAdmin, added: "", deleted: "", homes: homes});
+})
+
+router.post('/getByCityId', [auth] , async (req, res) => {
+    const cityId = req.body.cityId;
+    let foundedHomes = await Home.find({locationId: mongoose.Types.ObjectId(cityId)});
+    return res.json(foundedHomes);
 })
 
 router.get('/delete/:id', [auth, admin] , async (req, res) => {

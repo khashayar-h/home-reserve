@@ -1,0 +1,55 @@
+<div class="table-responsive">
+    <table class="table m-0">
+        <thead>
+            <tr>
+                <th scope="col">ردیف</th>
+                <th scope="col">شهر</th>
+                <th scope="col">سوئیت</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% reservations.forEach(function(reservation) { %>
+                <tr  id="<%= reservation._id %>">
+                    <th scope="row"><%= reservations.indexOf(reservation) + 1 %></th>
+                    <td><%= reservation.cityId.name %></td>
+                    <td><%= reservation.homeId.name %></td>                   
+                    <td>
+                        <!-- Call to action buttons -->
+                        <ul class="list-inline m-0">
+                            <li class="list-inline-item">
+
+                                <button type="button" class="btn btn-danger d-flex justify-content-center w-75 h-75 rounded-circle" data-bs-toggle="modal" data-bs-target="<%= '#exampleModal' + reservation._id %>">
+                                    <i class="fa fa-trash"></i>
+                                  </button>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <!-- Modal -->
+                <div class="modal fade" id="<%= 'exampleModal' + reservation._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">حذف</h1>
+                        </div>
+                        <div class="modal-body">
+                        آیا از لغو رزرو مطمئن هستید؟
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
+
+                        <form action="<%= '/reservation/delete/' + reservation._id %>" method="DELETE">
+                            <button id="<%= 'btnDelete' + reservations.indexOf(reservation) %>" class="btn btn-danger" type="submit" data-toggle="tooltip" data-placement="top" title="Delete">بله</button>
+                        </form>
+
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                
+              <% }); %>
+        </tbody>
+    </table>
+
+</div>

@@ -18,7 +18,7 @@ router.get('/', [auth, admin] , async (req, res) => {
     return res.render('dashboard/addCity', {isAdmin: req.user.isAdmin, added: "", deleted: "", cities: cities});
 })
 
-router.post('/get', [auth, admin] , async (req, res) => {
+router.post('/get', [auth] , async (req, res) => {
 
     let cities = await fetchCities();
     return res.json(cities).status(200);
